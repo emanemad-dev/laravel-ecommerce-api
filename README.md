@@ -1,15 +1,10 @@
 # Laravel E-commerce API
 
-This repository contains a simplified e-commerce backend built with Laravel.
+A backend e-commerce application built using Laravel, providing core functionality such as authentication, product catalog, cart system, and order handling.
 
-## ✅ Features
+It supports multilingual content (EN/AR) using Spatie Translatable and product image management via Spatie Media Library.
 
-* Laravel Sanctum Authentication
-* Products CRUD
-* Categories CRUD
-* Media Handling (Spatie Media Library)
-* Multi‑language Support (Spatie Translatable)
-* Filament Dashboard
+---
 
 ## 🚀 Installation
 
@@ -21,54 +16,139 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-## ⚙️ Environment Setup
+### ✅ DB Setup
 
-* Configure database inside **.env** file
-* Run migrations
+* Configure database in `.env`
+
+Run migrations
 
 ```bash
 php artisan migrate
 ```
 
-## ▶️ Run Project
+---
+
+## 🌱 Seeder
+
+Generates **10,000 products** with:
+
+* Title (EN/AR)
+* Description (EN/AR)
+* Price
+* Quantity
+* One image (Spatie Media Library)
+
+Run seeder:
+
+```bash
+php artisan db:seed --class=ProductSeeder
+```
+
+---
+
+## ▶️ Run App
 
 ```bash
 php artisan serve
 ```
 
-## 📁 Filament Dashboard
+---
 
-Filament dashboard is available at:
+## 📦 API Endpoints
 
-```
-/ admin
-```
+### ✅ Auth
 
-Login credentials can be created using a seeder or through registration.
+| Method | Endpoint    | Description             |
+| ------ | ----------- | ----------------------- |
+| POST   | /api/signup | User signup             |
+| POST   | /api/signin | User login              |
+| POST   | /api/logout | Logout (requires token) |
 
-## ⚡ API Authentication
+### ✅ Products
 
-Uses **Laravel Sanctum** for API token authentication.
+| Method | Endpoint           | Description               |
+| ------ | ------------------ | ------------------------- |
+| GET    | /api/products      | List products (paginated) |
+| GET    | /api/products/{id} | Show product              |
 
-## 📦 Media Uploads
+### ✅ Cart
 
-Uses **Spatie Media Library** to upload product images.
+| Method | Endpoint               | Description              |
+| ------ | ---------------------- | ------------------------ |
+| POST   | /api/cart/add          | Add product(s) to cart   |
+| GET    | /api/cart              | View cart                |
+| DELETE | /api/cart/{product_id} | Remove product from cart |
 
-## 🌍 Localization
+### ✅ Orders
 
-Uses **Spatie Translatable** to store product titles and descriptions in multiple languages.
+| Method | Endpoint         | Description            |
+| ------ | ---------------- | ---------------------- |
+| POST   | /api/orders      | Create order from cart |
+| GET    | /api/orders      | List user orders       |
+| GET    | /api/orders/{id} | Show order details     |
 
-## ✅ Example Product Payload
+---
+
+## 🧪 Testing Flow (Manual)
+
+1. Create a new user (Signup)
+2. Login using the same credentials
+3. Copy the issued token
+4. View list of products
+5. Add product(s) to the cart
+6. View cart to confirm items
+7. Remove an item from the cart (optional)
+8. Create an order (Checkout)
+9. Confirm the order exists in order history
+10. View details of a specific order
+
+---
+
+## 🌍 Translatable Example
 
 ```json
 {
   "title": {
     "en": "Shoes",
     "ar": "حذاء"
+  },
+  "description": {
+    "en": "Comfortable shoes",
+    "ar": "حذاء مريح"
   }
 }
 ```
 
+---
+
+## 🖼️ Media Library
+
+Each product has **one image** stored using Spatie Media Library.
+
+---
+
+## 🎁 Dashboard
+
+* Filament admin panel installed and configured
+* Manage products (CRUD + translations + image upload)
+* View orders
+
+Dashboard URL:
+
+```
+/admin
+```
+
+## ✅ Tech Stack
+
+* Laravel 11
+* Sanctum
+* Spatie Media Library
+* Spatie Translatable
+* Filament (optional)
+
+---
+
 ## ✅ License
 
-This project is open‑source.
+This project is open-source.
