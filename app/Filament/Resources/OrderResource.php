@@ -14,6 +14,9 @@ class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
+    protected static ?string $navigationGroup = 'Shop Management';
+    protected static ?string $navigationLabel = 'Orders';
+    protected static ?int $navigationSort = 1;
 
     public static function table(Table $table): Table
     {
@@ -24,6 +27,7 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('total_price')->label('Total Price'),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Created At'),
             ])
+            ->defaultSort('id', 'desc')
             ->actions([
                 Action::make('view')
                     ->label('View')

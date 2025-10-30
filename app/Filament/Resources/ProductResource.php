@@ -18,6 +18,7 @@ class ProductResource extends Resource
     protected static ?string $navigationGroup = 'Shop Management';
     protected static ?string $navigationLabel = 'Products';
     protected static ?string $modelLabel = 'Product';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -83,13 +84,11 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('title_en')
                     ->label('Title (EN)')
                     ->limit(20)
-                    ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('title_ar')
                     ->label('Title (AR)')
                     ->limit(20)
-                    ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('description_en')
@@ -107,39 +106,16 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('price')
                     ->label('Price')
                     ->money('usd')
-                    ->sortable()
-                    ->searchable(),
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('quantity')
                     ->label('Quantity')
-                    ->sortable()
-                    ->searchable(),
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created')
                     ->dateTime('d M Y, h:i A')
                     ->sortable(),
-            ])
-            ->filters([
-                Tables\Filters\TernaryFilter::make('active')->label('Active Status'),
-                Tables\Filters\Filter::make('price_range')
-                    ->form([
-                        Forms\Components\TextInput::make('min_price')->numeric(),
-                        Forms\Components\TextInput::make('max_price')->numeric(),
-                    ])
-                    ->query(function ($query, array $data) {
-                        if ($data['min_price'] ?? false) $query->where('price', '>=', $data['min_price']);
-                        if ($data['max_price'] ?? false) $query->where('price', '<=', $data['max_price']);
-                    }),
-                Tables\Filters\Filter::make('quantity_range')
-                    ->form([
-                        Forms\Components\TextInput::make('min_quantity')->numeric(),
-                        Forms\Components\TextInput::make('max_quantity')->numeric(),
-                    ])
-                    ->query(function ($query, array $data) {
-                        if ($data['min_quantity'] ?? false) $query->where('quantity', '>=', $data['min_quantity']);
-                        if ($data['max_quantity'] ?? false) $query->where('quantity', '<=', $data['max_quantity']);
-                    }),
             ])
             ->defaultSort('id', 'desc')
             ->actions([
