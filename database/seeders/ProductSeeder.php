@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
         $numImages = 1000; // Only 1000 unique images to save space
 
         // Generate 10,000 products using the factory
-        Product::factory()->count(10,000 )->create()->each(function ($product, $index) use ($numImages) {
+        Product::factory()->count(10000)->create()->each(function ($product, $index) use ($numImages) {
 
             // Select a random image ID from Picsum (repeats after 1000)
             $imageId = ($index % $numImages) + 1;
