@@ -1,202 +1,74 @@
+# Laravel E-commerce API
 
+This repository contains a simplified e-commerce backend built with Laravel.
 
-# 🛍️ E-Commerce API — Laravel
+## ✅ Features
 
-A simplified e-commerce REST API built with Laravel including authentication, product management, cart, and order handling.
-Supports multilingual products and image uploads.
+* Laravel Sanctum Authentication
+* Products CRUD
+* Categories CRUD
+* Media Handling (Spatie Media Library)
+* Multi‑language Support (Spatie Translatable)
+* Filament Dashboard
 
----
-
-## 🚀 Features
-
-✅ Authentication — Signup, login, logout
-✅ Product management — 10,000 generated products
-✅ Spatie Translatable — EN/AR titles & descriptions
-✅ Spatie Media Library — 1 image per product
-✅ Cart system — Add/remove/view
-✅ Orders — Checkout, total price, order items
-✅ Filament Admin Dashboard (optional / available)
-
----
-
-## 📦 Tech Stack
-
-* **Laravel**
-* **Laravel Sanctum**
-* **Spatie Translatable**
-* **Spatie Media Library**
-* **Filament (Dashboard)**
-* MySQL / PostgreSQL / SQLite
-
----
-
-## ⚙️ Installation
+## 🚀 Installation
 
 ```bash
-git clone https://github.com/emanemad-dev/laravel-ecommerce-task.git
-cd project-laravel-ecommerce-task
+git clone https://github.com/emanemad-dev/laravel-ecommerce-api.git
+cd laravel-ecommerce-api
 composer install
 cp .env.example .env
+php artisan key:generate
 ```
 
-Set your database credentials in `.env`
+## ⚙️ Environment Setup
+
+* Configure database inside **.env** file
+* Run migrations
 
 ```bash
-php artisan key:generate
 php artisan migrate
 ```
 
----
-
-## 📂 Database Seeding
-
-10,000 products are automatically generated using:
-
-```bash
-php artisan db:seed
-```
-
-Each product includes:
-
-* Title (EN + AR)
-* Description (EN + AR)
-* Price
-* Quantity
-* One image
-
----
-
-## 🔐 Authentication (Sanctum)
-
-| Method | Endpoint    | Description             |
-| ------ | ----------- | ----------------------- |
-| POST   | /api/signup | Register                |
-| POST   | /api/signin | Login                   |
-| POST   | /api/logout | Logout (requires token) |
-
-### Example — Signup
-
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password"
-}
-```
-
-### Example — Login
-
-```json
-{
-  "email": "john@example.com",
-  "password": "password"
-}
-```
-
----
-
-## 🛒 Products
-
-| Method | Endpoint           | Description     |
-| ------ | ------------------ | --------------- |
-| GET    | /api/products      | Paginated list  |
-| GET    | /api/products/{id} | Product details |
-
----
-
-## 🛍️ Cart
-
-| Method | Endpoint            | Description          |
-| ------ | ------------------- | -------------------- |
-| POST   | /api/cart/add       | Add products to cart |
-| GET    | /api/cart           | View cart            |
-| DELETE | /api/cart/{product} | Remove product       |
-
-Example:
-
-```json
-{
-  "products": [
-    { "product_id": 1, "quantity": 2 },
-    { "product_id": 55, "quantity": 1 }
-  ]
-}
-```
-
----
-
-## 📦 Orders
-
-| Method | Endpoint         | Description   |
-| ------ | ---------------- | ------------- |
-| POST   | /api/orders      | Checkout      |
-| GET    | /api/orders      | List orders   |
-| GET    | /api/orders/{id} | Order details |
-
-✔ Checkout clears the cart
-✔ Order contains total price + items
-
----
-
-## 🖥️ Admin Dashboard (Filament)
-
-A full Admin Panel is available using **Filament**.
-
-### ✅ Features
-
-* Product CRUD
-* Upload product image
-* Manage EN/AR translations
-* View orders & order details
-
-### ▶️ How to access
-
-Start server:
+## ▶️ Run Project
 
 ```bash
 php artisan serve
 ```
 
-Then open in browser:
+## 📁 Filament Dashboard
+
+Filament dashboard is available at:
 
 ```
-http://localhost:8000/admin
+/ admin
 ```
 
-Login with credentials you inserted (e.g. via seeder).
+Login credentials can be created using a seeder or through registration.
 
+## ⚡ API Authentication
 
-## ✅ Example Usage Flow
+Uses **Laravel Sanctum** for API token authentication.
 
-1. Signup → Login → Get Token
-2. View Products
-3. Add Products to Cart
-4. View Cart
-5. Create Order (Checkout)
-6. View Order History
+## 📦 Media Uploads
 
----
+Uses **Spatie Media Library** to upload product images.
 
+## 🌍 Localization
 
-## 🛠️ Additional Notes
+Uses **Spatie Translatable** to store product titles and descriptions in multiple languages.
 
-* All protected routes require Bearer Token
-* Products support EN/AR localization
-* Each product has only one image
-* Cart clears after checkout
+## ✅ Example Product Payload
 
----
+```json
+{
+  "title": {
+    "en": "Shoes",
+    "ar": "حذاء"
+  }
+}
+```
 
-## ✅ Requirements
+## ✅ License
 
-* PHP ≥ 8.1
-* Composer
-* MySQL / PostgreSQL / SQLite
-
----
-
-## 📄 License
-
-Open-source. Free to use.
-
----
+This project is open‑source.
