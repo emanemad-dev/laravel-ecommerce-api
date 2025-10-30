@@ -113,30 +113,6 @@ php artisan serve
 
 ---
 
------|------------------|-------------|
-| POST   | /api/orders      | Create order from cart |
-| GET    | /api/orders      | List user orders |
-| GET    | /api/orders/{id} | Show order details |
-
----
-
-## 🌍 Translatable Example
-
-```json
-{
-  "title": {
-    "en": "Shoes",
-    "ar": "حذاء"
-  },
-  "description": {
-    "en": "Comfortable shoes",
-    "ar": "حذاء مريح"
-  }
-}
-```
-
----
-
 ## 🖼️ Media Library
 
 Each product has **one image** stored using Spatie Media Library.
@@ -152,7 +128,7 @@ Each product has **one image** stored using Spatie Media Library.
 Dashboard URL:
 
 ```
-/admin
+{url}/admin
 ```
 
 ## ✅ Tech Stack
