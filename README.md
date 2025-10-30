@@ -6,6 +6,15 @@ It supports multilingual content (EN/AR) using Spatie Translatable and product i
 
 ---
 
+## ✅ API Requirements
+
+1. Authentication (Sanctum): Implement signup, signin, and logout endpoints.
+2. Product Management: Generate 10,000 products using a seeder. Each product includes title, description, price, quantity, and one image. Supports Arabic & English via Spatie Translatable.
+3. Cart Management: Users can add multiple products to their cart, view their cart, and remove items.
+4. Orders: Users can create orders from their cart; checkout clears cart. Orders include total price and item details.
+
+---
+
 ## 🚀 Installation
 
 ```bash
@@ -101,6 +110,13 @@ php artisan serve
 8. Create an order (Checkout)
 9. Confirm the order exists in order history
 10. View details of a specific order
+
+---
+
+-----|------------------|-------------|
+| POST   | /api/orders      | Create order from cart |
+| GET    | /api/orders      | List user orders |
+| GET    | /api/orders/{id} | Show order details |
 
 ---
 
